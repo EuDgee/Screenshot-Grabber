@@ -1,18 +1,21 @@
 package ru.livetex.grabber
 
 import org.scalatest.FlatSpec
-import ru.livetex.grabber.browser.PhantomJs
+
+import scala.reflect.io.File
+import scala.util.Random
 
 class PhantomJsSpec extends FlatSpec {
-  "PhantomJs" should "start" in {
-    val browser = new PhantomJs
-  }
+  "Phantom Script" should "make a screenshot by id and valid site name" in {
+    val ID = (1 + Random.nextInt(23423423)).toString
+    val site = "http://www.livetex.ru"
 
-  it should "navigate to websites" in {
-    val browser = new PhantomJs
-    browser goTo "www.google.com"
-    assert(browser.title == "Google", "sheck for title in google.com")
-  }
+    val fileName = ID + ".jpg"
+    File(fileName).delete()
 
-  it should "grab a screenshot to a file" in {pending}
+    PhantomShot.make(ID, site)
+    assert(File(fileName).exists, "No valid screenshot for" + site)
+
+    File(fileName).delete()
+  }
 }

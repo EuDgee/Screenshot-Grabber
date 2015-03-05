@@ -1,6 +1,6 @@
 package ru.livetex.grabber
 
-import akka.actor.{Props, ActorSystem}
+import akka.actor.ActorSystem
 import akka.event.Logging
 import akka.http.Http
 import akka.stream.ActorFlowMaterializer
@@ -16,8 +16,13 @@ object ScreenshotApp extends App with ScreenshotService {
   override val log = Logging(system, getClass)
 
   startHttp()
-  val screenshotActor = system.actorOf(Props[PhantomShotActor], name = "PhantomShotActor")
-  val urlCheckerActor = system.actorOf(URLCheckerActor.props(screenshotActor), name = "URLCheckerActor")
+  val screenshotActor = system.actorOf(PhantomShotActor.props(
+      config.getNumber("screenshot.width"),
+      config.getNumber("screenshot.height"),
+      config.getString("screenshot.format"),
+      config.getString("screenshot.folder")), name = "PhantomShotActor")
+  val urlCheckerActor = system.actorOf(URLCheckerActor.props(screenshotActor),
+      name = "URLCheckerActor")
 
   def startHttp() = {
     Http()

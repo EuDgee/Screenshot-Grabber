@@ -2,7 +2,7 @@ enablePlugins(JavaAppPackaging)
 
 name := "Screenshot-Grabber"
 
-version := "0.0.1-SNAPSHOT"
+version := "0.0.2"
 
 scalaVersion := "2.11.5"
 

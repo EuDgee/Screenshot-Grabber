@@ -4,6 +4,7 @@ import akka.actor.{Props, Actor, ActorLogging}
 
 class PhantomShotActor(width: Number, height: Number, format: String, folder: String)
     extends Actor with ActorLogging {
+  log.debug("Phantom Screenshot Actor started.")
 
   def receive = {
     case Message.AcquireScreenshot(id, url) =>

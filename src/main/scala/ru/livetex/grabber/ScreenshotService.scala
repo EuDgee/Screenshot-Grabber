@@ -11,7 +11,7 @@ trait ScreenshotService {
   val log: LoggingAdapter
 
   val routes = {
-    pathPrefix("get-screenshot") {
+    pathPrefix("screenshot") {
       (get & path(Segments(2))) {
         case List(id, url) => complete {
           log.debug("Request parsed: id=" + id + " url=" + url)

@@ -11,15 +11,15 @@ trait ScreenshotService {
   val log: LoggingAdapter
 
   val routes = {
-    pathPrefix("screenshot") {
-      (get & path(Segments(2))) {
-        case List(id, url) => complete {
-          log.debug("Request parsed: id=" + id + " url=" + url)
-          acquireScreenshot(id, url)
-          OK
+    get {
+      pathPrefix("screenshot") {
+        parameters('id, 'url) { (id: String, url: String) =>
+          complete {
+            log.debug("Request parsed: id=" + id + " url=" + url)
+            acquireScreenshot(id, url)
+            OK
+          }
         }
-
-        case _ => complete(BadRequest)
       }
     }
   }

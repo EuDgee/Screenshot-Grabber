@@ -1,9 +1,13 @@
 package ru.livetex.grabber
 
-import akka.actor.{Props, Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging}
 
-class PhantomShotActor(width: Number, height: Number, format: String, folder: String)
-    extends Actor with ActorLogging {
+class PhantomShotActor() extends Actor with ActorLogging {
+  val width = context.system.settings.config.getNumber("screenshot.width")
+  val height = context.system.settings.config.getNumber("screenshot.height")
+  val format = context.system.settings.config.getString("screenshot.format")
+  val folder = context.system.settings.config.getString("screenshot.folder")
+
   log.debug("Phantom Screenshot Actor started.")
 
   def receive = {
@@ -12,9 +16,4 @@ class PhantomShotActor(width: Number, height: Number, format: String, folder: St
       PhantomShot.make(id, url, width, height, format, folder)
       log.debug("Screenshot acquired and saved, url=" + url + " id=" + id)
   }
-}
-
-object PhantomShotActor {
-  def props(width: Number, height: Number, format: String, folder: String) =
-      Props(new PhantomShotActor(width, height, format, folder))
 }

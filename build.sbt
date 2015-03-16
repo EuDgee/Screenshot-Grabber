@@ -35,6 +35,8 @@ dockerExposedVolumes in Docker += "/var/screenshots"
 
 dockerBaseImage in Docker := "eudgee/phantomjs"
 
-dockerUpdateLatest := true
+dockerRepository in Docker := Some("dh.livetex.ru/livetex")
+
+dockerUpdateLatest in Docker := true
 
 Revolver.settings

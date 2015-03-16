@@ -1,5 +1,7 @@
 enablePlugins(JavaAppPackaging)
 
+enablePlugins(DockerPlugin)
+
 name := "Screenshot-Grabber"
 
 version := "0.0.2"
@@ -24,5 +26,15 @@ libraryDependencies ++= {
     "org.scalatest"     %% "scalatest"                         % scalaTestV % "test"
   )
 }
+
+daemonUser in Docker := "root"
+
+dockerExposedPorts in Docker += 5000
+
+dockerExposedVolumes in Docker += "/var/screenshots"
+
+dockerBaseImage in Docker := "eudgee/phantomjs"
+
+dockerUpdateLatest := true
 
 Revolver.settings

@@ -15,6 +15,7 @@ object ScreenshotApp extends App with ScreenshotService {
   val config = ConfigFactory.load()
   override val log = Logging(system, getClass)
 
+  PhantomShot.checkScript()
   startHttp()
   val screenshotActor = system.actorOf(PhantomShotActor.props(
       config.getNumber("screenshot.width"),

@@ -8,7 +8,7 @@ object PhantomShot {
   val fileName = "./grab-screenshot.js"
 
   def make(id: String, siteUrl: String, width: Number, height: Number, format: String, folder: String) {
-    val script = "phantomjs ./src/main/javascript/grab-screenshot.js "
+    val script = "phantomjs " + fileName + " "
     val params = List(siteUrl, id, width.toString, height.toString, format, folder).reduce(_ + " " + _)
     (script + params) !
   }
@@ -19,6 +19,7 @@ object PhantomShot {
       file.createNewFile()
       val writer = new PrintWriter(file)
       writer.write(script)
+      writer.close()
     }
   }
 
@@ -58,5 +59,5 @@ object PhantomShot {
      |      'url id width height format folder');
      |  phantom.exit();
      |}
-     |"""
+     |""".stripMargin
 }

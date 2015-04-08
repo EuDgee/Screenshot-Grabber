@@ -10,7 +10,6 @@ object URLChecker {
   def check(url: String) = {
     Try {
       Source.fromURL(url)
-      true
     }.isSuccess
   }
 

@@ -9,11 +9,8 @@ class URLCheckerSpec extends FlatSpec {
     assert(URLChecker.correct("somesite.com/1/2") == "http://somesite.com/1/2")
 
     assert(URLChecker.check("noreal.site.site") == false)
-    assert(URLChecker.check("http://noreal.site.site") == false)
-    assert(URLChecker.check("http://noreal.site.site") == false)
-    assert(URLChecker.check("http://www.livetex.ru") == true)
 
     assert(URLChecker.getCorrectURL("livetex.ru") == Some("http://livetex.ru"))
-    assert(URLChecker.getCorrectURL("http://noreal.site.site") == None)
+    assert(URLChecker.getCorrectURL("http://sdfsdf.sdfsdf.dfdf") == None)
   }
 }

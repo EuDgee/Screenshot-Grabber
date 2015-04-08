@@ -50,7 +50,9 @@ object PhantomShot {
      |  var page = require('webpage').create();
      |  page['viewportSize'] = viewport;
      |  page['clipRect'] = cliprect;
+     |  console.log('Opening page...');
      |  page.open(url, function() {
+     |    console.log('Saving screenshot');
      |    page.render(folder + id + '.' + format);
      |    phantom.exit();
      |  });

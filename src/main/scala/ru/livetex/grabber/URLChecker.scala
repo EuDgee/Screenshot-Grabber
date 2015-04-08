@@ -1,24 +1,24 @@
 package ru.livetex.grabber
 
 import scala.io.Source
+import scala.util.Try
 
 object URLChecker {
-  val schemes = List("http://", "https://")
+  val defaultScheme = "http://"
+  val schemes = List(defaultScheme, "https://")
 
   def check(url: String) = {
-    try {
+    Try {
       Source.fromURL(url)
       true
-    } catch {
-      case _: Exception => false
-    }
+    }.isSuccess
   }
 
   def correct(url: String) = {
     if (schemes.count(url.startsWith) > 0) {
       url
     } else {
-      schemes.head + url
+      defaultScheme + url
     }
   }
 

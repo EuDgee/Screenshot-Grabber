@@ -13,6 +13,7 @@ class PhantomJsSpec extends FlatSpec {
     val fileName = ID + ".jpg"
     File(fileName).delete()
 
+    PhantomShot.checkScript()
     PhantomShot.make(ID, site, 1024, 768, "jpg", "./")
     assert(File(fileName).exists, "No valid screenshot for" + site)
 

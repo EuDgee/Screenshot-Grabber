@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/EuDgee/Screenshot-Grabber.svg?branch=master)](https://travis-ci.org/EuDgee/Screenshot-Grabber)
 [![Codacy Badge](https://www.codacy.com/project/badge/35f932cfb04f4d0293df85e5d3e0cd6a)](https://www.codacy.com/app/eudgee/Screenshot-Grabber)
 
 ## Screenshot-Grabber
